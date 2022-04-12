@@ -1,37 +1,32 @@
-# cloud-file-server
+# 文件服务
 
-#### 介绍
-Java 基于 MongoDB GridFS 实现文件服务器
+## 技术栈
 
-#### 软件架构
-软件架构说明
+- SpringBoot
+- SpringCloud
+- MongoDB
+- JDK8
+- SpringData MongoDB
 
+## 功能描述
+- 单文件上传
+- 批量上传
+- 文件预览 仅支持,浏览器预览支持的文件格式
+- 文件下载
+- 文件删除
+- 文件重命名
+- 批量删除
+- 获取文件内容
+- 分片上传
+- 断点续传上传
+- 断点续传下载
 
-#### 安装教程
+## MongoDB GridFS 简介
+- GridFS是用于存储和检索超过16 MB BSON文档大小限制的文件
+- GridFS 会将大文件对象分割成多个小的chunk(文件片段),一般为256k/个,每个chunk将作为MongoDB的一个文档(document)被存储在chunks集合中。
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 何时使用GridFS
+- 如果文件系统限制了目录中文件的数量，则可以使用GridFS来存储所需数量的文件。
+- 当您要访问大文件部分的信息而不必将整个文件加载到内存中时，可以使用GridFS来调用文件的某些部分，而无需将整个文件读入内存。
+- 当您想要使文件和元数据自动同步并在多个系统和设施中部署时，可以使用GridFS。使用地理上分散的副本集时，MongoDB可以自动将文件及其元数据分发到许多 mongod实例和设施。
+- 如果文件都小于16 MB的限制，请考虑将每个文件存储在单个文档中，而不要使用GridFS。您可以使用BinData数据类型存储二进制数据。
